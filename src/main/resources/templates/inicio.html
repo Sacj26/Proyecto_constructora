@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Principal | Constructora</title>
+    <link rel="stylesheet" href="inicio.css">
+
+</head>
+
+<body>
+
+    <!-- Barra lateral -->
+    <div class="sidebar">
+        <a th:href="@{/registro}">Registrar Persona</a>
+        <a th:href="@{/consultas}">Ver Listado</a>
+        <a th:href="@{/jefe}">Seleccionar Jefe</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <h1>Panel Principal - Constructora</h1>
+        <p>Bienvenido al panel principal de la constructora. Utiliza las opciones en la barra lateral para navegar.</p>
+    </div>
+
+</body>
+
+</html>

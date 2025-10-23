@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Determinación de Jefe | Constructora</title>
+    <link rel="stylesheet" href="jefe.css">
+</head>
+<body>
+    <!-- Barra lateral -->
+    <div class="sidebar">
+        <a th:href="@{/registro}">Registrar Persona</a>
+        <a th:href="@{/consultas}">Ver Listado</a>
+        <a th:href="@{/jefe}">Seleccionar Jefe</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <h2>Determinación del Jefe</h2>
+
+    <!-- Mensaje de resultado -->
+    <div th:if="${mensaje}" class="mensaje" th:text="${mensaje}"></div>
+
+    <!-- Botón para determinar jefe -->
+    <form th:action="@{/determinar-jefe}" method="post">
+        <button type="submit">Determinar Jefe</button>
+    </form>
+
+    <!-- Mostrar filtros aplicados -->
+    <div th:if="${filtros}">
+        <strong>Filtros aplicados:</strong> <span th:text="${filtros}"></span>
+    </div>
+
+    <!-- Mostrar promedio si existe -->
+    <div th:if="${promedio != null}">
+        <strong>Promedio de disposición salarial:</strong> <span th:text="${promedio}"></span>
+    </div>
+
+    <!-- Tabla de personas que cumplen criterios -->
+    <div th:if="${personasFiltradas}">
+        <h3>Personas que cumplen los criterios</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Rol</th>
+                    <th>Disposición Salarial</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p : ${personasFiltradas}">
+                    <td th:text="${p.nombres}"></td>
+                    <td th:text="${p.apellidos}"></td>
+                    <td th:text="${p.edad}"></td>
+                    <td th:text="${p.rol}"></td>
+                    <td th:text="${p.disposicionSalarial}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Información del jefe seleccionado -->
+    <div th:if="${jefe}">
+        <h3>Jefe Seleccionado</h3>
+        <p><strong>Nombre:</strong> <span th:text="${jefe.nombres} + ' ' + ${jefe.apellidos}"></span></p>
+        <p><strong>Edad:</strong> <span th:text="${jefe.edad}"></span></p>
+        <p><strong>Rol:</strong> <span th:text="${jefe.rol}"></span></p>
+        <p><strong>Disposición Salarial:</strong> <span th:text="${jefe.disposicionSalarial}"></span></p>
+    </div>
+
+    <!-- Tabla general de todas las personas -->
+    <h3>Todos los registros</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Tipo ID</th>
+                <th>Número ID</th>
+                <th>Género</th>
+                <th>Edad</th>
+                <th>Disposición Salarial</th>
+                <th>Rol</th>
+                <th>Jefe</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="persona : ${personas}" th:classappend="${persona.jefe} ? 'jefe-row'">
+                <td th:text="${persona.nombres}"></td>
+                <td th:text="${persona.apellidos}"></td>
+                <td th:text="${persona.tipoId}"></td>
+                <td th:text="${persona.numeroId}"></td>
+                <td th:text="${persona.genero}"></td>
+                <td th:text="${persona.edad}"></td>
+                <td th:text="${persona.disposicionSalarial}"></td>
+                <td th:text="${persona.rol}"></td>
+                <td th:text="${persona.jefe} ? '✅' : ''"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="nav-links">
+        <a th:href="@{/inicio}">Volver al Inicio</a>
+    </div>
+    </div>
+</body>
+</html>

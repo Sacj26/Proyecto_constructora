@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Consultas de Personas | Constructora</title>
+    <link rel="stylesheet" href="consultas.css">
+    <link rel="icons8" href="https://img.icons8.com/?size=96&id=18944&format=png">
+</head>
+
+<body>
+
+    <!-- Barra lateral -->
+    <div class="sidebar">
+        <a th:href="@{/registro}">Registrar Persona</a>
+        <a th:href="@{/consultas}">Ver Listado</a>
+        <a th:href="@{/jefe}">Seleccionar Jefe</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <h2>Personas Registradas</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Tipo ID</th>
+                    <th>Número ID</th>
+                    <th>Género</th>
+                    <th>Edad</th>
+                    <th>Disposición Salarial</th>
+                    <th>Rol</th>
+                    <th>Jefe</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p : ${personas}" th:classappend="${p.jefe} ? 'jefe-row'">
+                    <td th:text="${p.nombres}"></td>
+                    <td th:text="${p.apellidos}"></td>
+                    <td th:text="${p.tipoId}"></td>
+                    <td th:text="${p.numeroId}"></td>
+                    <td th:text="${p.genero}"></td>
+                    <td th:text="${p.edad}"></td>
+                    <td th:text="${p.disposicionSalarial}"></td>
+                    <td th:text="${p.rol}"></td>
+                    <td th:text="${p.jefe} ? '✅' : ''"></td>
+                </tr>
+            </tbody>
+        </table>
+
+                <div class="nav-links">
+                    <a th:href="@{/inicio}">Volver al Inicio</a>
+                </div>
+    </div>
+</body>
+</html>
