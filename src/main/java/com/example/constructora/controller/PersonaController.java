@@ -111,4 +111,6 @@ public class PersonaController {
         model.addAttribute("personas", mongoTemplate.findAll(Persona.class)); // tabla completa
         return "jefe";
     }
+
+    //Hola
 }
